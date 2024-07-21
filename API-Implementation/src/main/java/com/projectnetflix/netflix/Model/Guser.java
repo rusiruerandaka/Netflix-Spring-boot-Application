@@ -10,7 +10,7 @@ import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @EqualsAndHashCode(callSuper = true)
-@Document
+@Document(collection = "guser")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
