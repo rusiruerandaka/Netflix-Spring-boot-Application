@@ -1,41 +1,18 @@
 package com.projectnetflix.netflix.Controller;
 
-import com.projectnetflix.netflix.Model.AuthUser;
+import com.projectnetflix.netflix.Dto.Guserdto;
 import com.projectnetflix.netflix.Model.Guser;
-import com.projectnetflix.netflix.Repository.AuthGuserRepo;
 import com.projectnetflix.netflix.Service.GuserService;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@AllArgsConstructor
 public class GuserController {
-
-    private final AuthGuserRepo authGuserRepo;
-    private final PasswordEncoder passwordEncoder;
-
-
-    @PostMapping("/register")
-    public ResponseEntity registerUser(@RequestBody AuthUser user){
-        try {
-            if (authGuserRepo.findByGusername(user.getUsername()).isPresent())
-                return ResponseEntity.status(HttpStatus.CONFLICT).body("Username already taken. Please try again");
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-            AuthUser save = authGuserRepo.save(user);
-            return ResponseEntity.ok(HttpStatus.CREATED);
-        } catch (Exception e){
-            return ResponseEntity.internalServerError().body(e.getMessage());
-        }
-    }
-
-
-
 
     @Autowired
     private GuserService guserService;

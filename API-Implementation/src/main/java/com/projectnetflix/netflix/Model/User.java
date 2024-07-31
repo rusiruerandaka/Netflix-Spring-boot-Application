@@ -1,7 +1,6 @@
 package com.projectnetflix.netflix.Model;
 
 
-import com.mongodb.connection.ProxySettings;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +17,4 @@ public class User {
     private String password;
 
 
-    public static ProxySettings.Builder withDeaultPasswordEncoder() {
-
-    }
 }
